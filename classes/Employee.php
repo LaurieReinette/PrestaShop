@@ -472,6 +472,10 @@ class EmployeeCore extends ObjectModel
      */
     public function logout()
     {
+        Hook::exec('actionNothingOnEmployeeLogout', [
+            'employee' => 'nothing',
+        ]);
+
         if (isset(Context::getContext()->cookie)) {
             Context::getContext()->cookie->logout();
             Context::getContext()->cookie->write();
